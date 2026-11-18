@@ -7,16 +7,30 @@ int main() {
     // TODO: Write your code below
     map<string, int> inventory;
 
-    inventory["Laptops"] = 15;
-    inventory["Mice"] = 42;
-    inventory["Keyboards"] = 28;
-    inventory["Monitors"] = 12;
+    inventory["apples"] = 50;
+    inventory["bananas"] = 30;
+    inventory["oranges"] = 25;
 
-    cout << "Initial Inventory Setup:\n";
-    for(const auto& i : inventory) {
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        string updateItem;
+        int quantity;
+
+        cin >> updateItem >> quantity;
+
+        inventory[updateItem] += quantity;
+
+        cout << "Added " << quantity << " " << updateItem
+             << ". New total: " << inventory[updateItem] << "\n";
+    }
+
+    cout << "Final Inventory:\n";
+
+    for (const auto& i : inventory) {
         cout << i.first << ": " << i.second << "\n";
     }
-    cout << "Inventory system is ready!\n";
 
     return 0;
 }
