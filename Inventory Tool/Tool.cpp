@@ -10,27 +10,23 @@ int main() {
     inventory["apples"] = 50;
     inventory["bananas"] = 30;
     inventory["oranges"] = 25;
+    inventory["grapes"] = 40;
 
     int n;
     cin >> n;
 
     for (int i = 0; i < n; i++) {
-        string updateItem;
-        int quantity;
+        string itemName;
+        cin >> itemName;
 
-        cin >> updateItem >> quantity;
-
-        inventory[updateItem] += quantity;
-
-        cout << "Added " << quantity << " " << updateItem
-             << ". New total: " << inventory[updateItem] << "\n";
+        if (inventory.count(itemName)) {
+            cout << itemName << ": " << inventory[itemName] << " in stock\n";
+        } else {
+            cout << itemName << ": Item not found\n";
+        }
     }
 
-    cout << "Final Inventory:\n";
-
-    for (const auto& i : inventory) {
-        cout << i.first << ": " << i.second << "\n";
-    }
+    cout << "Total items in inventory: " << inventory.size() << "\n";
 
     return 0;
 }
