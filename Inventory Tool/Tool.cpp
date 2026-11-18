@@ -10,23 +10,33 @@ int main() {
     inventory["apples"] = 50;
     inventory["bananas"] = 30;
     inventory["oranges"] = 25;
-    inventory["grapes"] = 40;
 
     int n;
     cin >> n;
 
     for (int i = 0; i < n; i++) {
         string itemName;
-        cin >> itemName;
+        int quantity;
 
-        if (inventory.count(itemName)) {
-            cout << itemName << ": " << inventory[itemName] << " in stock\n";
+        cin >> itemName >> quantity;
+
+        if (!inventory.count(itemName)) {
+            cout << "Error: " << itemName << " not found in inventory\n";
+        } else if (inventory[itemName] < quantity) {
+            cout << "Error: Cannot remove " << quantity << " " << itemName
+                 << ". Only " << inventory[itemName] << " in stock\n";
         } else {
-            cout << itemName << ": Item not found\n";
+            inventory[itemName] -= quantity;
+            cout << "Removed " << quantity << " " << itemName
+                 << ". New total: " << inventory[itemName] << "\n";
         }
     }
 
-    cout << "Total items in inventory: " << inventory.size() << "\n";
+    cout << "Final Inventory:\n";
+
+    for (const auto& item : inventory) {
+        cout << item.first << ": " << item.second << "\n";
+    }
 
     return 0;
 }
